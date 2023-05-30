@@ -206,6 +206,7 @@ pub fn decrypt_device_id(
   let cipher_text = cipher
     .decrypt(&_bytes_nonce, _aes_device_id.as_ref())
     .expect("Failed to decrypt aes");
+
   let _device_id = base64::decode(cipher_text).unwrap();
   let decoded = decrypt_string(&private_key, &_device_id);
   let json: DeviceObject = serde_json::from_str(&decoded).unwrap();
