@@ -1,3 +1,3 @@
-# `@moss/licence-linux-arm-gnueabihf`
+# `@moss/license-linux-arm-gnueabihf`
 
-This is the **armv7-unknown-linux-gnueabihf** binary for `@moss/licence`
+This is the **armv7-unknown-linux-gnueabihf** binary for `@moss/license`

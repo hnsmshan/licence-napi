@@ -1,3 +1,3 @@
-# `@moss/licence-win32-arm64-msvc`
+# `@moss/license-win32-arm64-msvc`
 
-This is the **aarch64-pc-windows-msvc** binary for `@moss/licence`
+This is the **aarch64-pc-windows-msvc** binary for `@moss/license`

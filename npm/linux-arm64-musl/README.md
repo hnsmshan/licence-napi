@@ -1,3 +1,3 @@
-# `@moss/licence-linux-arm64-musl`
+# `@moss/license-linux-arm64-musl`
 
-This is the **aarch64-unknown-linux-musl** binary for `@moss/licence`
+This is the **aarch64-unknown-linux-musl** binary for `@moss/license`

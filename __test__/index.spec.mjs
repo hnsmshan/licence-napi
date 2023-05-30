@@ -35,9 +35,9 @@ test('getMachineId from native', (t) => {
   t.log(getMachineId(publickeyStr))
   t.is(sum(1, 2), 3)
 })
-const deviceId = 'yD6s30u+juPG8+mt+Pz42f874zrWBGh+qI+SLqcE0J7QYKImQbgtk116XPddLk1rTCdQQhNRejEoKd5JthWMRB3ESvY3a1vy2hOamDk8h1Vpg4igaN4HQPtWEpWU6yYyd3/9zNHaKUxqzp5MUCAFoZAxGfgoOr4sGxA27oBUx+K1PM54EwonV4ILCkGwYRHwDJNoFW1LzuR3MxJmc3e7HZuxW4JoGvjtzEpxOm03GWebVJYCWk77GWs43aM='
-const key = 'mMsTU9TXXDx5HwauVJKbkCt+8nefNvS7jq901Fj3PxH/bky19778qjb0EI22WT2R/B5W4uzNrFyHTbIwTY//ITSFB8hqVlad9udkqyCheI08beBHFZ/DXrAcSzh7/i5RM4ObLxHCzRwIF39pvuDnLuQEOrxgnhivsBe8cAa1KQA='
-const nonce = 'xqx34D2xvhlWLloMkaGmDcM8lO+Obd9RxqreT5EQO3lNnQWZ2PhxlBm2Pd8IDvjqsjddt7lbW8tGEIxcruQvcMztQ7BWDnAdPxqHjbO4VmW99QmdTHTmfF3Psy7zjBYMwYJZ66YM3t1rGlXWUIl5SR2iNWUo5LAukFrOHSVxAdE='
+const deviceId = 'eki5WarV4jezQl5MVgKgUR1z/gz/QWq5SBa2f2YWlbjMxZKA0hAvyRHQYkufW+8lXgmG9hAsSPoh4xUfO4wD056KRrj5Cg7yi8KJ+fIGYOFCYETCRfZWYppzktd+Vyc20l8aWbVbjhxJ5pwdnxUJH7D8k/yzeYNvJR/bUEqz3WO1hf/bxXd/RycxAnhAF+kwc2J71UZAmv4/0BBb36b7lQ0iEU3PbDJTohbhAJyLq3EGWMe/LH6+h3yrGmc='
+const key = 'XWY23O/tmsnN/ZWG06r3+GeyXrZUvXaiOAziqTcZgapgf09tKz5OP7dXi89dHUENQ2rR5MIozRGU/xC52P5z1gmi1s++tV55J5vu5F9UkuzH4WjGVyIPLJqMjcXe+9JhUa5S24NgDxbEYRLT5O3ArLA3UkUbpfLJKRm9otjacAw='
+const nonce = 'usOnDQ29x9oVS/8RkNXU22E+DV7Bonn1tlQxkjZ52GzsZFxmaH0J8OYtV7LOZKN5iZGEKh2Z5zGBvKHoO7N2lyRWfeU9s57iauTuGX1dKQyXzs3APSUaJaTz4SZodDY5j8EZxfvPwAjJR61pvRyxI5d99eRQQ4XKa8q+Syk9xnw='
 test('getMachineId from node', (t) => {
   t.log(decryptDeviceId(privateKeyStr, deviceId, key, nonce))
   t.is(sum(1, 2), 3)

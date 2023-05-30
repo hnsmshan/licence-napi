@@ -1,3 +1,3 @@
-# `@moss/licence-linux-arm64-gnu`
+# `@moss/license-linux-arm64-gnu`
 
-This is the **aarch64-unknown-linux-gnu** binary for `@moss/licence`
+This is the **aarch64-unknown-linux-gnu** binary for `@moss/license`

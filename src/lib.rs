@@ -44,21 +44,48 @@ pub fn sum(a: i32, b: i32) -> i32 {
 #[cfg(target_os = "linux")]
 fn get_serial_number() -> String {
   use std::process::Command;
-
+  use uuid::Uuid;
+  use std::fs::{self, File};
+  use std::path::Path;
+  
   let output = Command::new("dmidecode")
     .arg("-t")
     .arg("baseboard")
-    .output()
-    .expect("Failed to execute command");
+    .output();
+    
+  let output_str = match output {
+    Ok(output) => String::from_utf8_lossy(&output.stdout),
+    Err(_) => {
+        let uuid = Uuid::new_v4();
+        let path = Path::new("/home/.config/license_serial_number");
+        match fs::create_dir_all(path) {
+          Ok(_) => (),
+          Err(e) => println!("Failed to create directory: {}", e),
+        }
+        let file = File::create(path.join("number")).unwrap();
+        file.write_all(uuid.to_string().as_bytes()).unwrap();
+        return uuid.to_string();
+    }
+  };
 
-  let output_str = String::from_utf8_lossy(&output.stdout);
-  output_str
+  let serial = output_str
     .lines()
     .find(|line| line.contains("Serial Number"))
     .map(|line| line.trim_start_matches("Serial Number:"))
-    .unwrap_or("Unknown")
-    .into()
-}
+    .unwrap_or_else(|| {
+      let uuid = Uuid::new_v4();
+      let path = Path::new("/home/.config/license_serial_number");
+      match fs::create_dir_all(path) {
+        Ok(_) => (),
+        Err(e) => println!("Failed to create directory: {}", e),
+      }
+      let file = File::create(path.join("number")).unwrap();
+      file.write_all(uuid.to_string().as_bytes()).unwrap();
+      uuid.to_string()
+    });
+
+  serial.into()
+} 
 
 #[cfg(target_os = "macos")]
 fn get_serial_number() -> String {

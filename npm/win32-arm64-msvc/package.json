@@ -1,5 +1,5 @@
 {
-  "name": "@moss/licence-win32-arm64-msvc",
+  "name": "@moss/license-win32-arm64-msvc",
   "version": "0.0.0",
   "os": [
     "win32"
@@ -7,9 +7,9 @@
   "cpu": [
     "arm64"
   ],
-  "main": "licence.win32-arm64-msvc.node",
+  "main": "license.win32-arm64-msvc.node",
   "files": [
-    "licence.win32-arm64-msvc.node"
+    "license.win32-arm64-msvc.node"
   ],
   "license": "MIT",
   "engines": {

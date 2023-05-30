@@ -1,5 +1,5 @@
 {
-  "name": "@moss/licence-win32-ia32-msvc",
+  "name": "@moss/license-win32-ia32-msvc",
   "version": "0.0.0",
   "os": [
     "win32"
@@ -7,9 +7,9 @@
   "cpu": [
     "ia32"
   ],
-  "main": "licence.win32-ia32-msvc.node",
+  "main": "license.win32-ia32-msvc.node",
   "files": [
-    "licence.win32-ia32-msvc.node"
+    "license.win32-ia32-msvc.node"
   ],
   "license": "MIT",
   "engines": {

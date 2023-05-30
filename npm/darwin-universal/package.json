@@ -1,12 +1,12 @@
 {
-  "name": "@moss/licence-darwin-universal",
+  "name": "@moss/license-darwin-universal",
   "version": "0.0.0",
   "os": [
     "darwin"
   ],
-  "main": "licence.darwin-universal.node",
+  "main": "license.darwin-universal.node",
   "files": [
-    "licence.darwin-universal.node"
+    "license.darwin-universal.node"
   ],
   "license": "MIT",
   "engines": {

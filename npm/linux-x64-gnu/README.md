@@ -1,3 +1,3 @@
-# `@moss/licence-linux-x64-gnu`
+# `@moss/license-linux-x64-gnu`
 
-This is the **x86_64-unknown-linux-gnu** binary for `@moss/licence`
+This is the **x86_64-unknown-linux-gnu** binary for `@moss/license`

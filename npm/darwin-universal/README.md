@@ -1,3 +1,3 @@
-# `@moss/licence-darwin-universal`
+# `@moss/license-darwin-universal`
 
-This is the **universal-apple-darwin** binary for `@moss/licence`
+This is the **universal-apple-darwin** binary for `@moss/license`

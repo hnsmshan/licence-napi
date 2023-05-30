@@ -1,3 +1,3 @@
-# `@moss/licence-win32-ia32-msvc`
+# `@moss/license-win32-ia32-msvc`
 
-This is the **i686-pc-windows-msvc** binary for `@moss/licence`
+This is the **i686-pc-windows-msvc** binary for `@moss/license`

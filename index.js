@@ -32,24 +32,24 @@ switch (platform) {
   case 'android':
     switch (arch) {
       case 'arm64':
-        localFileExisted = existsSync(join(__dirname, 'licence.android-arm64.node'))
+        localFileExisted = existsSync(join(__dirname, 'license.android-arm64.node'))
         try {
           if (localFileExisted) {
-            nativeBinding = require('./licence.android-arm64.node')
+            nativeBinding = require('./license.android-arm64.node')
           } else {
-            nativeBinding = require('@moss/licence-android-arm64')
+            nativeBinding = require('@moss/license-android-arm64')
           }
         } catch (e) {
           loadError = e
         }
         break
       case 'arm':
-        localFileExisted = existsSync(join(__dirname, 'licence.android-arm-eabi.node'))
+        localFileExisted = existsSync(join(__dirname, 'license.android-arm-eabi.node'))
         try {
           if (localFileExisted) {
-            nativeBinding = require('./licence.android-arm-eabi.node')
+            nativeBinding = require('./license.android-arm-eabi.node')
           } else {
-            nativeBinding = require('@moss/licence-android-arm-eabi')
+            nativeBinding = require('@moss/license-android-arm-eabi')
           }
         } catch (e) {
           loadError = e
@@ -63,13 +63,13 @@ switch (platform) {
     switch (arch) {
       case 'x64':
         localFileExisted = existsSync(
-          join(__dirname, 'licence.win32-x64-msvc.node')
+          join(__dirname, 'license.win32-x64-msvc.node')
         )
         try {
           if (localFileExisted) {
-            nativeBinding = require('./licence.win32-x64-msvc.node')
+            nativeBinding = require('./license.win32-x64-msvc.node')
           } else {
-            nativeBinding = require('@moss/licence-win32-x64-msvc')
+            nativeBinding = require('@moss/license-win32-x64-msvc')
           }
         } catch (e) {
           loadError = e
@@ -77,13 +77,13 @@ switch (platform) {
         break
       case 'ia32':
         localFileExisted = existsSync(
-          join(__dirname, 'licence.win32-ia32-msvc.node')
+          join(__dirname, 'license.win32-ia32-msvc.node')
         )
         try {
           if (localFileExisted) {
-            nativeBinding = require('./licence.win32-ia32-msvc.node')
+            nativeBinding = require('./license.win32-ia32-msvc.node')
           } else {
-            nativeBinding = require('@moss/licence-win32-ia32-msvc')
+            nativeBinding = require('@moss/license-win32-ia32-msvc')
           }
         } catch (e) {
           loadError = e
@@ -91,13 +91,13 @@ switch (platform) {
         break
       case 'arm64':
         localFileExisted = existsSync(
-          join(__dirname, 'licence.win32-arm64-msvc.node')
+          join(__dirname, 'license.win32-arm64-msvc.node')
         )
         try {
           if (localFileExisted) {
-            nativeBinding = require('./licence.win32-arm64-msvc.node')
+            nativeBinding = require('./license.win32-arm64-msvc.node')
           } else {
-            nativeBinding = require('@moss/licence-win32-arm64-msvc')
+            nativeBinding = require('@moss/license-win32-arm64-msvc')
           }
         } catch (e) {
           loadError = e
@@ -108,23 +108,23 @@ switch (platform) {
     }
     break
   case 'darwin':
-    localFileExisted = existsSync(join(__dirname, 'licence.darwin-universal.node'))
+    localFileExisted = existsSync(join(__dirname, 'license.darwin-universal.node'))
     try {
       if (localFileExisted) {
-        nativeBinding = require('./licence.darwin-universal.node')
+        nativeBinding = require('./license.darwin-universal.node')
       } else {
-        nativeBinding = require('@moss/licence-darwin-universal')
+        nativeBinding = require('@moss/license-darwin-universal')
       }
       break
     } catch {}
     switch (arch) {
       case 'x64':
-        localFileExisted = existsSync(join(__dirname, 'licence.darwin-x64.node'))
+        localFileExisted = existsSync(join(__dirname, 'license.darwin-x64.node'))
         try {
           if (localFileExisted) {
-            nativeBinding = require('./licence.darwin-x64.node')
+            nativeBinding = require('./license.darwin-x64.node')
           } else {
-            nativeBinding = require('@moss/licence-darwin-x64')
+            nativeBinding = require('@moss/license-darwin-x64')
           }
         } catch (e) {
           loadError = e
@@ -132,13 +132,13 @@ switch (platform) {
         break
       case 'arm64':
         localFileExisted = existsSync(
-          join(__dirname, 'licence.darwin-arm64.node')
+          join(__dirname, 'license.darwin-arm64.node')
         )
         try {
           if (localFileExisted) {
-            nativeBinding = require('./licence.darwin-arm64.node')
+            nativeBinding = require('./license.darwin-arm64.node')
           } else {
-            nativeBinding = require('@moss/licence-darwin-arm64')
+            nativeBinding = require('@moss/license-darwin-arm64')
           }
         } catch (e) {
           loadError = e
@@ -152,12 +152,12 @@ switch (platform) {
     if (arch !== 'x64') {
       throw new Error(`Unsupported architecture on FreeBSD: ${arch}`)
     }
-    localFileExisted = existsSync(join(__dirname, 'licence.freebsd-x64.node'))
+    localFileExisted = existsSync(join(__dirname, 'license.freebsd-x64.node'))
     try {
       if (localFileExisted) {
-        nativeBinding = require('./licence.freebsd-x64.node')
+        nativeBinding = require('./license.freebsd-x64.node')
       } else {
-        nativeBinding = require('@moss/licence-freebsd-x64')
+        nativeBinding = require('@moss/license-freebsd-x64')
       }
     } catch (e) {
       loadError = e
@@ -168,26 +168,26 @@ switch (platform) {
       case 'x64':
         if (isMusl()) {
           localFileExisted = existsSync(
-            join(__dirname, 'licence.linux-x64-musl.node')
+            join(__dirname, 'license.linux-x64-musl.node')
           )
           try {
             if (localFileExisted) {
-              nativeBinding = require('./licence.linux-x64-musl.node')
+              nativeBinding = require('./license.linux-x64-musl.node')
             } else {
-              nativeBinding = require('@moss/licence-linux-x64-musl')
+              nativeBinding = require('@moss/license-linux-x64-musl')
             }
           } catch (e) {
             loadError = e
           }
         } else {
           localFileExisted = existsSync(
-            join(__dirname, 'licence.linux-x64-gnu.node')
+            join(__dirname, 'license.linux-x64-gnu.node')
           )
           try {
             if (localFileExisted) {
-              nativeBinding = require('./licence.linux-x64-gnu.node')
+              nativeBinding = require('./license.linux-x64-gnu.node')
             } else {
-              nativeBinding = require('@moss/licence-linux-x64-gnu')
+              nativeBinding = require('@moss/license-linux-x64-gnu')
             }
           } catch (e) {
             loadError = e
@@ -197,26 +197,26 @@ switch (platform) {
       case 'arm64':
         if (isMusl()) {
           localFileExisted = existsSync(
-            join(__dirname, 'licence.linux-arm64-musl.node')
+            join(__dirname, 'license.linux-arm64-musl.node')
           )
           try {
             if (localFileExisted) {
-              nativeBinding = require('./licence.linux-arm64-musl.node')
+              nativeBinding = require('./license.linux-arm64-musl.node')
             } else {
-              nativeBinding = require('@moss/licence-linux-arm64-musl')
+              nativeBinding = require('@moss/license-linux-arm64-musl')
             }
           } catch (e) {
             loadError = e
           }
         } else {
           localFileExisted = existsSync(
-            join(__dirname, 'licence.linux-arm64-gnu.node')
+            join(__dirname, 'license.linux-arm64-gnu.node')
           )
           try {
             if (localFileExisted) {
-              nativeBinding = require('./licence.linux-arm64-gnu.node')
+              nativeBinding = require('./license.linux-arm64-gnu.node')
             } else {
-              nativeBinding = require('@moss/licence-linux-arm64-gnu')
+              nativeBinding = require('@moss/license-linux-arm64-gnu')
             }
           } catch (e) {
             loadError = e
@@ -225,13 +225,13 @@ switch (platform) {
         break
       case 'arm':
         localFileExisted = existsSync(
-          join(__dirname, 'licence.linux-arm-gnueabihf.node')
+          join(__dirname, 'license.linux-arm-gnueabihf.node')
         )
         try {
           if (localFileExisted) {
-            nativeBinding = require('./licence.linux-arm-gnueabihf.node')
+            nativeBinding = require('./license.linux-arm-gnueabihf.node')
           } else {
-            nativeBinding = require('@moss/licence-linux-arm-gnueabihf')
+            nativeBinding = require('@moss/license-linux-arm-gnueabihf')
           }
         } catch (e) {
           loadError = e

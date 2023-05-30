@@ -1,5 +1,5 @@
 {
-  "name": "@moss/licence-linux-arm-gnueabihf",
+  "name": "@moss/license-linux-arm-gnueabihf",
   "version": "0.0.0",
   "os": [
     "linux"
@@ -7,9 +7,9 @@
   "cpu": [
     "arm"
   ],
-  "main": "licence.linux-arm-gnueabihf.node",
+  "main": "license.linux-arm-gnueabihf.node",
   "files": [
-    "licence.linux-arm-gnueabihf.node"
+    "license.linux-arm-gnueabihf.node"
   ],
   "license": "MIT",
   "engines": {
