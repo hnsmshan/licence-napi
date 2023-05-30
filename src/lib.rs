@@ -18,7 +18,7 @@ use rsa::{
 use serde_derive::{Deserialize, Serialize};
 use std::error::Error;
 use std::str;
-use std::uuid::Uuid;
+use uuid::Uuid;
 
 #[derive(Serialize, Deserialize)]
 #[napi(object)]
@@ -131,6 +131,12 @@ pub fn get_sys_info_result() -> (Option<String>, Option<String>) {
   let mac_address = get_mac_address().ok().map(|mac| mac.unwrap().to_string());
 
   (Some(serial_number), mac_address)
+}
+
+#[napi]
+pub fn uuid_v4(env: Env)-> Result<JsString> {
+  let uuid = Uuid::new_v4();
+  Ok(env.create_string(&uuid.to_string())?.into())
 }
 
 #[napi]

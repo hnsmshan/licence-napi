@@ -252,9 +252,10 @@ if (!nativeBinding) {
   throw new Error(`Failed to load native binding`)
 }
 
-const { sum, getSysInfo, getMachineId, decryptDeviceId } = nativeBinding
+const { sum, uuidV4, getSysInfo, getMachineId, decryptDeviceId } = nativeBinding
 
 module.exports.sum = sum
+module.exports.uuidV4 = uuidV4
 module.exports.getSysInfo = getSysInfo
 module.exports.getMachineId = getMachineId
 module.exports.decryptDeviceId = decryptDeviceId

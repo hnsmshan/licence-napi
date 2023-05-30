@@ -13,6 +13,7 @@ export interface MachineObject {
   deviceId: string
 }
 export function sum(a: number, b: number): number
+export function uuidV4(): string
 export function getSysInfo(): object
 export function getMachineId(pem: string): object
 export function decryptDeviceId(pem: string, deviceId: string, key: string, nonce: string): object
