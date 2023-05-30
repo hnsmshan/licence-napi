@@ -16,8 +16,8 @@ use rsa::{
   pkcs1::DecodeRsaPrivateKey, pkcs8::DecodePublicKey, Pkcs1v15Encrypt, RsaPrivateKey, RsaPublicKey,
 };
 use serde_derive::{Deserialize, Serialize};
-use std::str;
 use std::string::String;
+use std::{fs, str};
 use uuid::Uuid;
 
 #[derive(Serialize, Deserialize)]
@@ -54,10 +54,17 @@ fn has_dmidecode() -> bool {
 // #[cfg(target_os = "macos")]
 fn get_serial_number() -> String {
   use std::{
-    fs::File,
+    fs::{create_dir_all, File},
     io::{Read, Write},
     path::Path,
   };
+  let home_config = Path::new("~/.config");
+
+  if !home_config.exists() {
+    if let Err(e) = create_dir_all(home_config) {
+      println!("Error creating ~/.config: {}", e);
+    }
+  }
 
   let path = Path::new("~/.config/license_serial_number");
 
