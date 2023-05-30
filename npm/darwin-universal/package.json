@@ -1,0 +1,15 @@
+{
+  "name": "@moss/licence-darwin-universal",
+  "version": "0.0.0",
+  "os": [
+    "darwin"
+  ],
+  "main": "licence.darwin-universal.node",
+  "files": [
+    "licence.darwin-universal.node"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">= 10"
+  }
+}
