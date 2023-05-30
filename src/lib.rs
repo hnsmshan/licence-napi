@@ -42,6 +42,14 @@ pub struct MachineObject {
 pub fn sum(a: i32, b: i32) -> i32 {
   a + b
 }
+#[cfg(target_os = "linux")]
+fn has_dmidecode() -> bool {
+  use std::process::Command;
+  match Command::new("dmidecode").arg("--version").output() {
+    Ok(_) => true,
+    Err(_) => false,
+  }
+}
 
 #[cfg(target_os = "linux")]
 // #[cfg(target_os = "macos")]
@@ -50,34 +58,24 @@ fn get_serial_number() -> String {
     fs::File,
     io::{Read, Write},
     path::Path,
-    process::Command,
   };
 
-  let output = Command::new("dmidecode")
-    .arg("-s")
-    .arg("system-serial-number")
-    .output();
-  if let Ok(output) = output {
-    let serial = String::from_utf8_lossy(&output.stdout);
-    serial.trim().to_string()
-  } else {
-    let path = Path::new("/home/.config/license_serial_number/uuid");
+  let path = Path::new("/home/.config/license_serial_number/uuid");
 
-    if path.exists() {
-      // Read UUID from file
-      let mut file = File::open(path).expect("Failed to open UUID file");
-      let mut contents = String::new();
-      file
-        .read_to_string(&mut contents)
-        .expect("Failed to read UUID file");
-      contents.trim().to_string()
-    } else {
-      // Generate UUID and save to file
-      let uuid = Uuid::new_v4().to_string();
-      let mut file = File::create(path).expect("Failed to create UUID file");
-      file.write(uuid.as_bytes()).expect("Failed to write UUID");
-      uuid
-    }
+  if path.exists() {
+    // Read UUID from file
+    let mut file = File::open(path).expect("Failed to open UUID file");
+    let mut contents = String::new();
+    file
+      .read_to_string(&mut contents)
+      .expect("Failed to read UUID file");
+    contents.trim().to_string()
+  } else {
+    // Generate UUID and save to file
+    let uuid = Uuid::new_v4().to_string();
+    let mut file = File::create(path).expect("Failed to create UUID file");
+    file.write(uuid.as_bytes()).expect("Failed to write UUID");
+    uuid
   }
 }
 
