@@ -18,6 +18,7 @@ use rsa::{
 use serde_derive::{Deserialize, Serialize};
 use std::error::Error;
 use std::str;
+use std::uuid::Uuid;
 
 #[derive(Serialize, Deserialize)]
 #[napi(object)]
@@ -43,28 +44,29 @@ pub fn sum(a: i32, b: i32) -> i32 {
 
 #[cfg(target_os = "linux")]
 fn get_serial_number() -> String {
-  use std::process::Command;
-  use uuid::Uuid;
   use std::fs::{self, File};
   use std::path::Path;
-  
+  use std::process::Command;
+
+  use rsa::pkcs8::der::Writer;
+
   let output = Command::new("dmidecode")
     .arg("-t")
     .arg("baseboard")
     .output();
-    
+
   let output_str = match output {
     Ok(output) => String::from_utf8_lossy(&output.stdout),
     Err(_) => {
-        let uuid = Uuid::new_v4();
-        let path = Path::new("/home/.config/license_serial_number");
-        match fs::create_dir_all(path) {
-          Ok(_) => (),
-          Err(e) => println!("Failed to create directory: {}", e),
-        }
-        let file = File::create(path.join("number")).unwrap();
-        file.write_all(uuid.to_string().as_bytes()).unwrap();
-        return uuid.to_string();
+      let uuid = Uuid::new_v4();
+      let path = Path::new("/home/.config/license_serial_number");
+      match fs::create_dir_all(path) {
+        Ok(_) => (),
+        Err(e) => println!("Failed to create directory: {}", e),
+      }
+      let file = File::create(path.join("number")).unwrap();
+      file.write(uuid.to_string().as_bytes()).unwrap();
+      return uuid.to_string();
     }
   };
 
@@ -80,12 +82,12 @@ fn get_serial_number() -> String {
         Err(e) => println!("Failed to create directory: {}", e),
       }
       let file = File::create(path.join("number")).unwrap();
-      file.write_all(uuid.to_string().as_bytes()).unwrap();
+      file.write(uuid.to_string().as_bytes()).unwrap();
       uuid.to_string()
     });
 
   serial.into()
-} 
+}
 
 #[cfg(target_os = "macos")]
 fn get_serial_number() -> String {
@@ -240,10 +242,7 @@ pub fn decrypt_device_id(
 
   let mut result = env.create_object()?;
   result.set_named_property("mac_address", env.create_string(&json.mac_address)?)?;
-  result.set_named_property(
-    "serial_number",
-    env.create_string(&json.serial_number)?,
-  )?;
- 
+  result.set_named_property("serial_number", env.create_string(&json.serial_number)?)?;
+
   Ok(result)
 }
