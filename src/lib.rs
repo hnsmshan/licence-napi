@@ -46,18 +46,21 @@ pub fn sum(a: i32, b: i32) -> i32 {
 #[cfg(target_os = "linux")]
 // #[cfg(target_os = "macos")]
 fn get_serial_number() -> String {
-  use std::{process::Command, path::Path, fs::File, io::{Read, Write}};
+  use std::{
+    fs::File,
+    io::{Read, Write},
+    path::Path,
+    process::Command,
+  };
 
   let output = Command::new("dmidecode")
     .arg("-s")
     .arg("system-serial-number")
-    .output()
-    .expect("Failed to run dmidecode");
-
-  let serial = String::from_utf8_lossy(&output.stdout);
-
-  if serial.is_empty() {
-    // dmidecode failed, fall back to UUID
+    .output();
+  if let Ok(output) = output {
+    let serial = String::from_utf8_lossy(&output.stdout);
+    serial.trim().to_string()
+  } else {
     let path = Path::new("/home/.config/license_serial_number/uuid");
 
     if path.exists() {
@@ -72,13 +75,9 @@ fn get_serial_number() -> String {
       // Generate UUID and save to file
       let uuid = Uuid::new_v4().to_string();
       let mut file = File::create(path).expect("Failed to create UUID file");
-      file
-        .write(uuid.as_bytes())
-        .expect("Failed to write UUID");
+      file.write(uuid.as_bytes()).expect("Failed to write UUID");
       uuid
     }
-  } else {
-    serial.into()
   }
 }
 
