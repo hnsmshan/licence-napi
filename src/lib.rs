@@ -16,7 +16,6 @@ use rsa::{
   pkcs1::DecodeRsaPrivateKey, pkcs8::DecodePublicKey, Pkcs1v15Encrypt, RsaPrivateKey, RsaPublicKey,
 };
 use serde_derive::{Deserialize, Serialize};
-use std::error::Error;
 use std::str;
 use std::string::String;
 use uuid::Uuid;
@@ -73,8 +72,16 @@ fn get_serial_number() -> String {
   } else {
     // Generate UUID and save to file
     let uuid = Uuid::new_v4().to_string();
-    let mut file = File::create(path).expect("Failed to create UUID file");
-    file.write(uuid.as_bytes()).expect("Failed to write UUID");
+    match File::create(path) {
+      Ok(mut file) => {
+        file.write(uuid.as_bytes()).expect("Failed to write UUID");
+      }
+      Err(e) => {
+        println!("create file Error{}", e)
+      }
+    };
+    // let mut file = File::create(path).expect("Failed to create UUID file");
+    // file.write(uuid.as_bytes()).expect("Failed to write UUID");
     uuid
   }
 }
