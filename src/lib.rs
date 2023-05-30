@@ -60,7 +60,7 @@ fn get_serial_number() -> String {
     path::Path,
   };
 
-  let path = Path::new("/home/.config/license_serial_number/uuid");
+  let path = Path::new("~/.config/license_serial_number");
 
   if path.exists() {
     // Read UUID from file
