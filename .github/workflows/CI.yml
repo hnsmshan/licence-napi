@@ -435,20 +435,20 @@ jobs:
           if git log -1 --pretty=%B | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+$";
           then
             # echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
-            echo "registry=https://registry.npmjs.org" >> "~/.npmrc"
-            echo "always-auth=true" >> "~/.npmrc"
-            echo "auto-install-peers=true" >> "~/.npmrc"
-            echo "strict-peer-dependencies=false" >> "~/.npmrc"
-            echo "@moss:registry=https://packages.aliyun.com/61454fd928003bdc3daa9523/npm/npm-registry/" >> "~/.npmrc"
+            echo "registry=https://registry.npmjs.org" >> ~/.npmrc
+            echo "always-auth=true" >> ~/.npmrc
+            echo "auto-install-peers=true" >> ~/.npmrc
+            echo "strict-peer-dependencies=false" >> ~/.npmrc
+            echo "@moss:registry=https://packages.aliyun.com/61454fd928003bdc3daa9523/npm/npm-registry/" >> ~/.npmrc
             npm publish --access public
           elif git log -1 --pretty=%B | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+";
           then
             # echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
-            echo "registry=https://registry.npmjs.org" >> "~/.npmrc"
-            echo "always-auth=true" >> "~/.npmrc"
-            echo "auto-install-peers=true" >> "~/.npmrc"
-            echo "strict-peer-dependencies=false" >> "~/.npmrc"
-            echo "@moss:registry=https://packages.aliyun.com/61454fd928003bdc3daa9523/npm/npm-registry/" >> "~/.npmrc"
+            echo "registry=https://registry.npmjs.org" >> ~/.npmrc
+            echo "always-auth=true" >> ~/.npmrc
+            echo "auto-install-peers=true" >> ~/.npmrc
+            echo "strict-peer-dependencies=false" >> ~/.npmrc
+            echo "@moss:registry=https://packages.aliyun.com/61454fd928003bdc3daa9523/npm/npm-registry/" >> ~/.npmrc
             npm publish --tag next --access public
           else
             echo "Not a release, skipping publish"
