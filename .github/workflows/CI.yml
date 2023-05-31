@@ -430,7 +430,7 @@ jobs:
           USERNAME=${{ env.NPM_ALIYUN_USERNAME }}
           NPM_PASSWORD=${{ env.NPM_ALIYUN_PASSWORD }}
           EMAIL=${{ env.NPM_EMAIL }}
-          NPM_REGISTRY=$REGISTRY NPM_USER=$USERNAME NPM_PASS=$NPM_PASSWORD NPM_EMAIL=$EMAIL npm-cli-login
+          # NPM_REGISTRY=$REGISTRY NPM_USER=$USERNAME NPM_PASS=$NPM_PASSWORD NPM_EMAIL=$EMAIL npm-cli-login
           echo "registry=https://registry.npmjs.org" >> ~/.npmrc
           echo "always-auth=true" >> ~/.npmrc
           echo "auto-install-peers=true" >> ~/.npmrc
@@ -439,12 +439,13 @@ jobs:
           cat ~/.npmrc
           if git log -1 --pretty=%B | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+$";
           then
-            # echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
-            
+            echo "//packages.aliyun.com/61454fd928003bdc3daa9523/npm/npm-registry/:_authToken=$NPM_AUTH_TOKEN" >> ~/.npmrc
+            npm config set registry https://packages.aliyun.com/61454fd928003bdc3daa9523/npm/npm-registry/
             npm publish --access public --registry=https://packages.aliyun.com/61454fd928003bdc3daa9523/npm/npm-registry/
           elif git log -1 --pretty=%B | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+";
           then
-            # echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+            echo "//packages.aliyun.com/61454fd928003bdc3daa9523/npm/npm-registry/:_authToken==$NPM_AUTH_TOKEN" >> ~/.npmrc
+            npm config set registry https://packages.aliyun.com/61454fd928003bdc3daa9523/npm/npm-registry/
             npm publish --tag next --access public --registry=https://packages.aliyun.com/61454fd928003bdc3daa9523/npm/npm-registry/
           else
             echo "Not a release, skipping publish"
@@ -452,6 +453,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_EMAIL: ${{ secrets.NPM_EMAIL }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_PRIVATE_SCOPE_AUTH_TOKEN }}
           NPM_PRIVATE_REGISTRY: ${{ secrets.NPM_PRIVATE_REGISTRY }}
           NPM_ALIYUN_PASSWORD: ${{ secrets.NPM_ALIYUN_PASSWORD }}
           NPM_ALIYUN_USERNAME: ${{ secrets.NPM_ALIYUN_USERNAME }}
