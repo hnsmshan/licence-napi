@@ -428,16 +428,27 @@ jobs:
           npm install -g @lark-org/npm-cli-login
           REGISTRY=${{ env.NPM_PRIVATE_REGISTRY }}
           USERNAME=${{ env.NPM_ALIYUN_USERNAME }}
+          GITHUB_TOKEN=${{ env.GITHUB_TOKEN }}
           NPM_PASSWORD=${{ env.NPM_ALIYUN_PASSWORD }}
           EMAIL=${{ env.NPM_EMAIL }}
           NPM_REGISTRY=$REGISTRY NPM_USER=$USERNAME NPM_PASS=$NPM_PASSWORD NPM_EMAIL=$EMAIL npm-cli-login
           if git log -1 --pretty=%B | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+$";
           then
             # echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+            echo "registry=https://registry.npmjs.org" >> "~/.npmrc"
+            echo "always-auth=true" >> "~/.npmrc"
+            echo "auto-install-peers=true" >> "~/.npmrc"
+            echo "strict-peer-dependencies=false" >> "~/.npmrc"
+            echo "@moss:registry=https://packages.aliyun.com/61454fd928003bdc3daa9523/npm/npm-registry/" >> "~/.npmrc"
             npm publish --access public
           elif git log -1 --pretty=%B | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+";
           then
             # echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+            echo "registry=https://registry.npmjs.org" >> "~/.npmrc"
+            echo "always-auth=true" >> "~/.npmrc"
+            echo "auto-install-peers=true" >> "~/.npmrc"
+            echo "strict-peer-dependencies=false" >> "~/.npmrc"
+            echo "@moss:registry=https://packages.aliyun.com/61454fd928003bdc3daa9523/npm/npm-registry/" >> "~/.npmrc"
             npm publish --tag next --access public
           else
             echo "Not a release, skipping publish"
