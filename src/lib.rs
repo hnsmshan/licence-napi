@@ -190,6 +190,21 @@ fn decrypt_bytes(private_key: &RsaPrivateKey, enc_data: &[u8]) -> Vec<u8> {
 }
 
 #[napi]
+pub fn encrypt(env: Env, pem: String, key: String) -> Result<JsString> {
+  let public_key = RsaPublicKey::from_public_key_pem(&pem).expect("Failed to parse PEM");
+  let encoded_str: String = encrypt_string(&public_key, &key.as_bytes());
+  Ok(env.create_string(&encoded_str)?.into())
+}
+
+#[napi]
+pub fn decrypt(env: Env, pem: String, key: String) -> Result<JsString> {
+  let private_key = RsaPrivateKey::from_pkcs1_pem(&pem).expect("Failed to parse PEM");
+  let _key: Vec<u8> = base64::decode(&key).unwrap();
+  let decoded_str: String = decrypt_string(&private_key, &_key);
+  env.create_string(&decoded_str.as_ref())
+}
+
+#[napi]
 pub fn get_machine_id(env: Env, pem: String) -> Result<JsObject> {
   let public_key = RsaPublicKey::from_public_key_pem(&pem).expect("Failed to parse PEM");
   let (serial_number, mac_address) = get_sys_info_result();
